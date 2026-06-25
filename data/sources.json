@@ -1,0 +1,62 @@
+{
+  "seed": 42,
+  "project": "Kiswahili AI - Swahili Instruction Dataset",
+  "version": "1.0",
+  "created": "2026-06-24",
+  "language": "Swahili (sw)",
+  "data_sources": {
+    "FineTome-20k-sw": {
+      "hf_path": "ngusadeep/Swahili-FineTome-20k",
+      "rows": 17982,
+      "type": "general_instruction",
+      "column_format": "instruction/output",
+      "original_source": "mlabonne/FineTome-100k",
+      "translation_method": "GPT-4o-mini via OpenAI Batch API",
+      "license": "Apache 2.0"
+    },
+    "KenSwQuAD": {
+      "hf_path": "Kencorpus/KenSwQuAD",
+      "rows": 7506,
+      "type": "extractive_qa",
+      "column_format": "context/question/answer (flat strings)",
+      "annotation": "Manual annotation by native Swahili speakers",
+      "domains": ["agriculture", "education", "technology", "governance", "daily_life"],
+      "license": "CC BY 4.0"
+    },
+    "Code-170k-swahili": {
+      "hf_path": "michsethowusu/Code-170k-swahili",
+      "rows": 14969,
+      "type": "code_conversations",
+      "column_format": "conversations (ShareGPT format)",
+      "original_source": "glaiveai/glaive-code-assistant-v2",
+      "license": "Apache 2.0"
+    },
+    "Swahili-Corpus": {
+      "hf_path": "ngusadeep/Swahili-Corpus-Dataset",
+      "rows": 12267,
+      "type": "raw_text (converted to instruction format)",
+      "column_format": "text",
+      "source": "Mendeley Data (Masasi & Masua, 2024)",
+      "domains": ["government", "news", "health", "education", "agriculture", "law", "politics"],
+      "license": "Open"
+    }
+  },
+  "blending": {
+    "method": "Multi-source aggregation with deduplication (first 80 chars)",
+    "train_split": "95%",
+    "validation_split": "5%",
+    "shuffle_seed": 42
+  },
+  "total_before_dedup": 52724,
+  "total_after_dedup": 52118,
+  "train_rows": 49512,
+  "validation_rows": 2606,
+  "adaptation": {
+    "platform": "Adaptive Data (Adaption Labs)",
+    "rows_used": 20000,
+    "recipes": ["deduplication", "reasoning_traces", "hallucination_mitigation"],
+    "credit_cost": 496,
+    "status": "launched"
+  },
+  "intended_use": "Instruction-tuning Swahili language models for improved comprehension, generation, and task performance across diverse domains"
+}
